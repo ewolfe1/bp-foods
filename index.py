@@ -86,7 +86,7 @@ with meal_tabs1:
                 ct = 0
 
 with meal_tabs2:
-    
+
     pf_cols = st.columns((5,1))
     with pf_cols[0]:
         st.write('*See the nutritional value of some prepared foods. The progress bar displays the value in relation to the other foods in the list.*')
