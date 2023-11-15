@@ -27,7 +27,7 @@ if hide_pb_rf:
 else:
     st.data_editor(state.ing_df,column_config={
                 c: st.column_config.ProgressColumn(
-                format="%d", min_value=state.ing_df[c].min(),
+                format="%f", min_value=state.ing_df[c].min(),
                 max_value=state.ing_df[c].max()) for c in state.ing_df},
                 use_container_width=True)
 
