@@ -1,0 +1,10 @@
+.DS_Store
+.idea/
+~$*
+__pycache__/
+.ipynb_checkpoints/
+zOld/
+*_old.csv
+venv/
+*.ipynb
+test/
