@@ -27,8 +27,8 @@ if hide_pb_rf:
 else:
     st.data_editor(state.ing_df,column_config={
                 c: st.column_config.ProgressColumn(
-                format="%f", min_value=int(state.ing_df[c].min()),
-                max_value=int(state.ing_df[c].max())) for c in state.ing_df},
+                format="%f", min_value=float(state.ing_df[c].min()),
+                max_value=float(state.ing_df[c].max())) for c in state.ing_df},
                 use_container_width=True)
 
 st.write('## Prepared foods')
@@ -47,8 +47,8 @@ with meal_tabs1:
     else:
         st.data_editor(state.prep_df,column_config={
                     c: st.column_config.ProgressColumn(
-                    format="%d", min_value=state.prep_df[c].min(),
-                    max_value=state.prep_df[c].max()) for c in state.prep_df},
+                    format="%d", min_value=float(state.prep_df[c].min()),
+                    max_value=float(state.prep_df[c].max())) for c in state.prep_df},
                     use_container_width=True)
 
 with meal_tabs2:
