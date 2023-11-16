@@ -18,7 +18,7 @@ with head_cols[1]:
 st.write('## Raw foods')
 rf_cols = st.columns((5,1))
 with rf_cols[0]:
-    st.write('*See the nutritional value of some common foods. The progress bar displays the value in relation to the other foods in the list.*')
+    st.write('*See the nutritional value of some common foods. The progress bar displays the value in relation to the other foods in the list. Click any column header to change the sort order.*')
 with rf_cols[1]:
     hide_pb_rf = st.checkbox('Hide progress bars', key="hide_pb_rf")
 
@@ -35,6 +35,23 @@ st.write('## Prepared foods')
 meal_tabs1, meal_tabs2 = st.tabs(['Recipe ideas', 'Nutritional value'])
 
 with meal_tabs1:
+
+    pf_cols = st.columns((5,1))
+    with pf_cols[0]:
+        st.write('*See the nutritional value of some prepared foods. The progress bar displays the value in relation to the other foods in the list. Click any column header to change the sort order.*')
+    with pf_cols[1]:
+        hide_pb_pf = st.checkbox('Hide progress bars', key="hide_pb_pf")
+
+    if hide_pb_pf:
+        st.dataframe(state.prep_df, use_container_width=True)
+    else:
+        st.data_editor(state.prep_df,column_config={
+                    c: st.column_config.ProgressColumn(
+                    format="%d", min_value=state.prep_df[c].min(),
+                    max_value=state.prep_df[c].max()) for c in state.prep_df},
+                    use_container_width=True)
+
+with meal_tabs2:
 
     st.write('## Meal ideas')
     ing_search_cols = st.columns((3,1,4))
@@ -60,9 +77,7 @@ with meal_tabs1:
     with ing_search_cols[1]:
         st.button("clear text input", on_click=tools.clear_text)
 
-
     meal_cols = st.columns(4)
-
     ct = 0
     for i,r in state.meals_df_filtered.iterrows():
 
@@ -83,26 +98,6 @@ with meal_tabs1:
                  ct += 1
             else:
                 ct = 0
-
-with meal_tabs2:
-
-    pf_cols = st.columns((5,1))
-    with pf_cols[0]:
-        st.write('*See the nutritional value of some prepared foods. The progress bar displays the value in relation to the other foods in the list.*')
-    with pf_cols[1]:
-        hide_pb_pf = st.checkbox('Hide progress bars', key="hide_pb_pf")
-
-    if hide_pb_pf:
-        st.dataframe(state.prep_df, use_container_width=True)
-    else:
-        st.data_editor(state.prep_df,column_config={
-                    c: st.column_config.ProgressColumn(
-                    format="%d", min_value=state.prep_df[c].min(),
-                    max_value=state.prep_df[c].max()) for c in state.prep_df},
-                    use_container_width=True)
-
-    # st.write('*See the nutritional value of some prepared foods*')
-    # st.dataframe(state.prep_df, use_container_width=True)
 
 with st.expander('Sources'):
     st.write('Dataset: Food suitable for diabetes and blood pressure. [https://www.kaggle.com/datasets/nandagopll/food-suitable-for-diabetes-and-blood-pressure](https://www.kaggle.com/datasets/nandagopll/food-suitable-for-diabetes-and-blood-pressure)')
