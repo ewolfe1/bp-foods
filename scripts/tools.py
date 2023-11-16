@@ -35,6 +35,7 @@ def get_data():
     df = df[(~df['Type'].isnull())][[c for c in df if 'Suitable' not in c]]
     rename_cols = {c: c.replace(' Content', '') for c in df.columns}
     df = df.rename(columns=rename_cols)
+    df.sort_values(by='Food Name', inplace=True)
     df.set_index('Food Name', inplace=True)
 
     state.ing_df = df[df.Type=='Ingredient'][[c for c in df if c != 'Type']]

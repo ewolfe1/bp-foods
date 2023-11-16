@@ -32,7 +32,7 @@ else:
                 use_container_width=True)
 
 st.write('## Prepared foods')
-meal_tabs1, meal_tabs2 = st.tabs(['Recipe ideas', 'Nutritional value'])
+meal_tabs1, meal_tabs2 = st.tabs(['Nutritional value', 'Recipe ideas'])
 
 with meal_tabs1:
 
